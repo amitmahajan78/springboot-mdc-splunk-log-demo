@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeMdcKeyName>correlationId</includeMdcKeyName>
+            <includeMdcKeyName>sessionId</includeMdcKeyName>
+            <includeMdcKeyName>method</includeMdcKeyName>
+            <includeMdcKeyName>path</includeMdcKeyName>
+            <includeMdcKeyName>queryString</includeMdcKeyName>
+            <includeMdcKeyName>headers</includeMdcKeyName>
+            <includeMdcKeyName>requestBody</includeMdcKeyName>
+            <includeMdcKeyName>status</includeMdcKeyName>
+            <includeMdcKeyName>responseBody</includeMdcKeyName>
+            <includeMdcKeyName>error</includeMdcKeyName>
+            <includeMdcKeyName>errorType</includeMdcKeyName>
+            <includeMdcKeyName>latency</includeMdcKeyName>
+            <includeMdcKeyName>label</includeMdcKeyName>
+            <includeMdcKeyName>endpointClass</includeMdcKeyName>
+            <includeMdcKeyName>exceptionType</includeMdcKeyName>
+            <includeMdcKeyName>statusCode</includeMdcKeyName>
+            <customFields>{"application":"spring-boot-mdc-splunk-demo"}</customFields>
+            <prettyPrint>true</prettyPrint>
+            <timeZone>UTC</timeZone>
+            <timestampPattern>yyyy-MM-dd HH:mm:ss.SSS</timestampPattern>
+            <fieldNames>
+                <timestamp>timestamp</timestamp>
+                <message>message</message>
+                <logger>logger</logger>
+                <thread>thread</thread>
+                <level>level</level>
+            </fieldNames>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="com.example" level="DEBUG"/>
+</configuration> 
